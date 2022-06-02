@@ -1,4 +1,3 @@
-
 describe("Search elements", ()=>{
     beforeEach(()=>{
         cy.visit('/');
@@ -16,5 +15,15 @@ describe("Search elements", ()=>{
         cy.fixture('searchResult').then((searchResult)=>{
             cy.get(searchResult.alert).should('contain','No results were found for your search');
         })
-    }) 
+    })
+    
+    it('search for elements with especial code',()=>{
+        cy.readFile('cypress/support/text/search.txt').then((text)=>{
+           cy.search(text);
+
+        })
+        cy.fixture('searchResult').then((searchResult)=>{
+            cy.get(searchResult.alert).should('contain','No results were found for your search');
+        })
+    })
 }) 
